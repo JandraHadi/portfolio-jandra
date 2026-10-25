@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { profile } from "@/data/profile";
-import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
   title: "Privacy",
@@ -12,7 +11,7 @@ export const metadata: Metadata = {
 export default function PrivacyPage() {
   return (
     <>
-      <main id="main" className="container-page max-w-3xl space-y-6 pt-24 leading-relaxed text-soft">
+      <main id="main" className="container-page max-w-3xl space-y-6 pt-28 pb-16 leading-relaxed text-soft">
         <Link href="/" className="text-sm text-accent underline underline-offset-2">
           ← Back to home
         </Link>
@@ -29,7 +28,7 @@ export default function PrivacyPage() {
           stores nor displays individual visitors. Google Signals and ad personalization are turned off.
         </p>
         <p>
-          Analytics loads only after you press Accept. You can change your choice at any time with “Analytics
+          Analytics loads only after you press “Accept cookies”. You can change your choice at any time with “Cookie
           settings” in the footer. Declining does not affect the site.
         </p>
         {profile.email && (
@@ -41,7 +40,6 @@ export default function PrivacyPage() {
           </p>
         )}
       </main>
-      <Footer />
     </>
   );
 }

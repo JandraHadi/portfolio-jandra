@@ -5,19 +5,19 @@ import { useSyncExternalStore } from "react";
 import { Mail } from "lucide-react";
 import { profile } from "@/data/profile";
 import TrackedLink from "@/components/TrackedLink";
-import { GithubIcon, LinkedinIcon } from "@/components/BrandIcons";
+import { GithubIcon, LinkedinIcon, InstagramIcon, FacebookIcon, MediumIcon } from "@/components/BrandIcons";
 import { REOPEN_CONSENT_EVENT } from "@/components/Analytics";
 import { analyticsEnabled } from "@/lib/analytics";
 
 const subscribe = () => () => {};
-const iconLink = "inline-flex size-11 items-center justify-center rounded-md hover:text-foreground";
+const iconLink = "inline-flex size-11 items-center justify-center rounded-md transition-colors hover:text-foreground";
 
 export default function Footer() {
   // false on the server and first render, real value on the client (no hydration mismatch)
   const analyticsOn = useSyncExternalStore(subscribe, analyticsEnabled, () => false);
 
   return (
-    <footer className="mt-12 border-t border-border">
+    <footer className="mt-auto bg-muted">
       <div className="container-page flex flex-col items-center justify-between gap-4 py-8 text-sm text-muted-foreground sm:flex-row">
         <span>
           © {new Date().getFullYear()} {profile.name}
@@ -39,16 +39,31 @@ export default function Footer() {
                 <LinkedinIcon className="size-[18px]" />
               </TrackedLink>
             )}
+            {profile.instagram && (
+              <TrackedLink href={profile.instagram} event="social_click" params={{ network: "instagram_footer" }} aria-label="Instagram (opens in a new tab)" className={iconLink}>
+                <InstagramIcon className="size-[18px]" />
+              </TrackedLink>
+            )}
+            {profile.facebook && (
+              <TrackedLink href={profile.facebook} event="social_click" params={{ network: "facebook_footer" }} aria-label="Facebook (opens in a new tab)" className={iconLink}>
+                <FacebookIcon className="size-[18px]" />
+              </TrackedLink>
+            )}
+            {profile.medium && (
+              <TrackedLink href={profile.medium} event="social_click" params={{ network: "medium_footer" }} aria-label="Medium (opens in a new tab)" className={iconLink}>
+                <MediumIcon className="size-[18px]" />
+              </TrackedLink>
+            )}
           </span>
-          <Link href="/privacy" className="hover:text-foreground">
+          <Link href="/privacy" className="inline-flex min-h-11 items-center transition-colors hover:text-foreground">
             Privacy
           </Link>
           {analyticsOn && (
             <button
               onClick={() => window.dispatchEvent(new Event(REOPEN_CONSENT_EVENT))}
-              className="cursor-pointer hover:text-foreground"
+              className="inline-flex min-h-11 cursor-pointer items-center transition-colors hover:text-foreground"
             >
-              Analytics settings
+              Cookie settings
             </button>
           )}
         </span>

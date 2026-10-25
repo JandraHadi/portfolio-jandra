@@ -55,7 +55,7 @@ body {
 
 /* Anchor targets sit below the fixed navbar */
 section[id] {
-  scroll-margin-top: 4rem;
+  scroll-margin-top: 3rem;
 }
 
 /* Visible keyboard focus everywhere */
@@ -83,27 +83,133 @@ section[id] {
 }
 
 /* Shared page container: fluid gutters, sensible max width */
-.container-page {
-  width: 100%;
-  max-width: 72rem;
-  margin-inline: auto;
-  padding-inline: clamp(1.25rem, 4vw, 3rem);
+:root {
+  --gutter: clamp(1.25rem, 4vw, 3rem);
+  --container: 72rem;
 }
 
-/* Subtle scroll-in for sections (opacity/transform only) */
-@keyframes rise-in {
+.container-page {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+/* Vertical rhythm shared by every section */
+.section {
+  padding-block: clamp(4rem, 9vw, 7rem);
+}
+
+.eyebrow {
+  font-family: var(--font-jetbrains-mono), monospace;
+  font-size: 0.8125rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.section-title {
+  font-size: clamp(1.75rem, 3.2vw, 2.25rem);
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: var(--foreground);
+}
+
+/* Aligns hero copy with the container's left edge while the photo bleeds right */
+.hero-copy {
+  padding-inline: var(--gutter);
+}
+
+@media (min-width: 1024px) {
+  .hero-copy {
+    padding-left: max(var(--gutter), calc((100vw - var(--container)) / 2 + var(--gutter)));
+    padding-right: clamp(2rem, 4vw, 4rem);
+  }
+}
+
+/* Navbar links: underline grows from the left on hover / current page */
+.nav-link {
+  position: relative;
+  color: var(--soft);
+  transition: color 0.2s ease;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0.75rem;
+  right: 0.75rem;
+  bottom: 0.35rem;
+  height: 1px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s ease;
+}
+
+.nav-link:hover,
+.nav-link[aria-current] {
+  color: var(--foreground);
+}
+
+.nav-link:hover::after,
+.nav-link[aria-current]::after {
+  transform: scaleX(1);
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  min-height: 3rem;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: 0.5rem;
+  padding-inline: 1.25rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease, transform 0.15s ease;
+}
+
+.btn:active {
+  transform: scale(0.97);
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: var(--on-accent);
+}
+
+.btn-primary:hover {
+  background: #bcd4c3;
+}
+
+.btn-quiet {
+  background: var(--card);
+  color: var(--foreground);
+}
+
+.btn-quiet:hover {
+  background: #2b4943;
+}
+
+/* Page and mobile-menu fades (opacity only) */
+@keyframes fade-in {
   from {
     opacity: 0;
-    transform: translateY(12px);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
   }
 }
 
-.rise-in {
-  animation: rise-in 0.4s ease-out both;
+.page-fade {
+  animation: fade-in 0.35s ease-out both;
+}
+
+.menu-fade {
+  animation: fade-in 0.18s ease-out both;
 }
 
 @media (prefers-reduced-motion: reduce) {

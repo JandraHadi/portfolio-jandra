@@ -1,6 +1,6 @@
 import type { SVGProps } from "react";
 
-// Lucide v1 ships no brand logos, so these two are inlined (simple-icons paths).
+// Lucide v1 ships no brand logos, so GitHub and LinkedIn are inlined (simple-icons paths).
 type P = SVGProps<SVGSVGElement>;
 
 export function GithubIcon(props: P) {
@@ -15,6 +15,35 @@ export function LinkedinIcon(props: P) {
   return (
     <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" {...props}>
       <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+    </svg>
+  );
+}
+
+// Drawn by hand (simple outline/filled shapes) for the same reason.
+export function InstagramIcon(props: P) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true" {...props}>
+      <rect x="3" y="3" width="18" height="18" rx="5" />
+      <circle cx="12" cy="12" r="4" />
+      <circle cx="17.5" cy="6.5" r="0.6" fill="currentColor" />
+    </svg>
+  );
+}
+
+export function FacebookIcon(props: P) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" {...props}>
+      <path d="M13.5 22v-8.2h2.8l.45-3.3H13.5V8.4c0-.95.3-1.6 1.65-1.6h1.75V3.85A22 22 0 0 0 14.4 3.7c-2.5 0-4.2 1.5-4.2 4.3v2.5H7.4v3.3h2.8V22z" />
+    </svg>
+  );
+}
+
+export function MediumIcon(props: P) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" {...props}>
+      <ellipse cx="6.8" cy="12" rx="5.3" ry="5.6" />
+      <ellipse cx="16.2" cy="12" rx="2.7" ry="5.3" />
+      <ellipse cx="21.1" cy="12" rx="0.9" ry="4.7" />
     </svg>
   );
 }
