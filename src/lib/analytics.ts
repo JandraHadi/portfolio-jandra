@@ -1,4 +1,5 @@
-export const GA_ID = process.env.NEXT_PUBLIC_GA_ID ?? "";
+// Trim whitespace/quotes: a pasted value like " G-ABC123 " would otherwise silently disable analytics.
+export const GA_ID = (process.env.NEXT_PUBLIC_GA_ID ?? "").trim().replace(/^["']|["']$/g, "");
 export const CONSENT_KEY = "analytics-consent";
 export type Consent = "granted" | "denied";
 

@@ -71,26 +71,32 @@ export default function Analytics() {
         <div
           role="dialog"
           aria-labelledby="consent-title"
-          className="fixed inset-x-3 bottom-3 z-70 mx-auto flex max-w-2xl flex-col gap-3 rounded-xl border border-border bg-card p-4 shadow-lg sm:flex-row sm:items-center"
+          aria-describedby="consent-desc"
+          className="fixed inset-x-3 bottom-3 z-70 mx-auto flex max-w-2xl flex-col gap-4 rounded-xl border border-border-strong bg-card p-4 shadow-lg sm:flex-row sm:items-center sm:p-5"
         >
-          <p id="consent-title" className="flex-1 text-sm leading-relaxed text-soft">
-            I&apos;d like to use Google Analytics to count visits. It sets cookies and is off unless you agree.{" "}
-            <Link href="/privacy" className="text-accent underline underline-offset-2">
-              Privacy
-            </Link>
-          </p>
-          <div className="flex shrink-0 gap-2">
+          <div className="flex-1">
+            <h2 id="consent-title" className="text-sm font-semibold text-foreground">
+              Your privacy, your choice.
+            </h2>
+            <p id="consent-desc" className="mt-1 text-sm leading-relaxed text-soft">
+              Choose whether to allow analytics cookies. They help me understand how people use this website.{" "}
+              <Link href="/privacy" className="text-accent underline underline-offset-2">
+                Privacy
+              </Link>
+            </p>
+          </div>
+          <div className="flex shrink-0 flex-col gap-2 min-[420px]:flex-row">
             <button
               onClick={() => choose("granted")}
-              className="min-h-10 cursor-pointer rounded-lg bg-accent px-4 text-sm font-semibold text-on-accent hover:opacity-90"
+              className="min-h-11 cursor-pointer rounded-lg bg-accent px-4 text-sm font-semibold text-on-accent hover:opacity-90"
             >
-              Accept
+              Accept cookies
             </button>
             <button
               onClick={() => choose("denied")}
-              className="min-h-10 cursor-pointer rounded-lg border border-border-strong px-4 text-sm font-medium text-foreground hover:bg-muted"
+              className="min-h-11 cursor-pointer rounded-lg border border-border-strong px-4 text-sm font-medium text-foreground hover:bg-muted"
             >
-              Decline
+              Decline cookies
             </button>
           </div>
         </div>
